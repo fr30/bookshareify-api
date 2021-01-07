@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :bookshelves
+  resources :books
+  resources :bookshelf_books, except: [:update, :destroy]
+  resource :bookshelf_books, only: :destroy
 end

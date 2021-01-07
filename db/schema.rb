@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_01_07_165243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "books", force: :cascade do |t|
+    t.string "author", null: false
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookshelf_books", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "bookshelf_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_bookshelf_books_on_book_id"
+    t.index ["bookshelf_id", "book_id"], name: "index_bookshelf_books_on_bookshelf_id_and_book_id", unique: true
+    t.index ["bookshelf_id"], name: "index_bookshelf_books_on_bookshelf_id"
+  end
+
+  create_table "bookshelves", force: :cascade do |t|
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bookshelf_books", "books"
+  add_foreign_key "bookshelf_books", "bookshelves"
 end

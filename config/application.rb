@@ -20,7 +20,8 @@ Bundler.require(*Rails.groups)
 module BookshareifyApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
+    config.autoload_paths += ["lib/"]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -32,6 +33,8 @@ module BookshareifyApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.action_controller.action_on_unpermitted_parameters = :raise
+    config.middleware.use ActionDispatch::Cookies
+
     Faker::Config.random = Random.new(42)
     ActiveModelSerializers.config.adapter = :json
   end

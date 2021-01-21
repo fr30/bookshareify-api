@@ -10,7 +10,7 @@
 p "Creating books"
 (0..10).each do
   book = Faker::Book.unique
-  Book.create!(author: book.author, title: book.title)
+  Book.create!(author: book.author, title: book.title, genre: book.genre, publisher: book.publisher)
 end
 
 # CREATE BOOKSHELF

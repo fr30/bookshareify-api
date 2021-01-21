@@ -40,14 +40,14 @@ class BooksController < ApplicationController
   end
 
   def create_params
-    params.permit(:title, :author)
+    params.permit(:title, :author, :genre, :publisher)
   end
 
   def update_params
-    params.permit(:id, :title, :author)
+    params.permit(:id, :title, :author, :genre, :publisher)
   end
 
   def search_params
-    params.permit(:title, :author)
+    params.permit(:title, :author, :genre, :publisher)
   end
 end
